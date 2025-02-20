@@ -12,10 +12,15 @@ function copyCode() {
     });
 }
 
-function showPreview() {
+function updatePreview() {
     var iframe = document.getElementById('preview');
     var code = editor.getValue();
     iframe.contentWindow.document.open();
     iframe.contentWindow.document.write(code);
     iframe.contentWindow.document.close();
 }
+
+editor.on('change', updatePreview);
+
+// Actualizar la vista previa inicialmente
+updatePreview();
