@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Código</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/theme/material-darker.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #282c34; /* Color de fondo */
+            color: #ffffff; /* Color del texto */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+        .toolbar span {
+            color: #61dafb; /* Color del texto de la pestaña */
+            font-weight: bold;
+        }
+        .toolbar button {
+            background-color: #61dafb;
+            color: #1e1e1e;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .toolbar button:hover {
+            background-color: #4fb8e7;
+        }
+        .code-editor {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .CodeMirror {
+            background-color: #1e1e1e; /* Color del fondo del editor */
+            color: #ffffff; /* Color del texto del código */
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .toolbar span {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Editor de Código</h1>
+        <div class="toolbar">
+            <span>HTML</span>
+            <button onclick="copyCode()">Copiar</button>
+        </div>
+        <textarea id="code" name="code">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;Dos caminos se bifurcaron en un bosque, y yo,
+    Yo tomé el menos transitado,
+    Y eso ha hecho toda la diferencia.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.7/mode/xml/xml.min.js"></script>
+        <script>
+            var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+                lineNumbers: true, // Mostrar números de línea
+                mode: 'xml',
+                theme: 'material-darker' // Tema material-darker
+            });
+
+            function copyCode() {
+                navigator.clipboard.writeText(editor.getValue()).then(function() {
+                    alert('¡Código copiado!');
+                }, function(err) {
+                    alert('Error al copiar el código: ', err);
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>
