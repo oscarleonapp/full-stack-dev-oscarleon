@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Color de fondo */
+    color: #151b23; /* Color del texto */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
